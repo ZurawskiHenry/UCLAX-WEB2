@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>The "THIS" Keyword</title>
+        <style>
+            span {
+                background-color: darkblue;
+                color: white;
+                padding: 3px 10px;
+                margin: 0px 10px;
+            }
+            .posters {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .posters div {
+                width: 33.33333%;
+            }
+            .posters img {
+                width: 100%;
+                display: block;
+                transition: all 1s;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1 id="myHeading">The "THIS" Keyword</h1>
+        <h2 id="theOnlySubheading">Subheading</h2>
+        <p id="theOnlyPar">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation <span>ullamco laboris</span> nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <div class="posters">
+            <div><img id="image1" src="./img/posters/out/1.jpg" data-filename="1.jpg" data-title="Image 1"></div>
+            <div><img id="image2" src="./img/posters/out/2.jpg" data-filename="2.jpg" data-title="Image 2"></div>
+            <div><img id="image3" src="./img/posters/out/3.jpg" data-filename="3.jpg" data-title="Image 3"></div>
+        </div>
+
+        <script>
+
+            /*-------------------------------------
+            | THIS On Elements
+            -------------------------------------*/
+
+
+            /*-------------------------------------
+            | Propagation :: Bubbling Up
+            -------------------------------------*/
+            // function tellMeWhatThisIs(event) {
+            // console.log(this);
+              // event.stopPropogation();
+
+
+            // tellMeWhatThisIs();
+            // document.querySelectorAll('h1').addEventListener('click',tellMeWhatThisIs)
+            // document.querySelectorAll('h2').addEventListener('click',tellMeWhatThisIs)
+            // document.addEventListener('click', tellMeWhatThisIs);
+            // document.querySelectorAll('p').addEventListener('click', tellMeWhatThisIs);
+            // document.querySelectorAll('span').addEventListener('click', tellMeWhatThisIs);
+            // console.log(this);
+
+            /*-------------------------------------
+            | THIS in action
+            -------------------------------------*/
+            var posters = document.querySelectorAll('.posters img');
+
+            console.log(posters);
+
+            function image_over() {
+                var theTitle = this.dataset.title;
+                var filename = this.dataset.filename;
+                var prefix = './img/posters/over/';
+
+                theH2.innerHTML = theTitle;
+
+                console.log(prefix + filename);
+
+                this.src = prefix + filename;
+            }
+
+            function image_out() {
+                theH2.innerHTML = 'whatever I want it to be'
+                this.src = './img/posters/out' + this.dataset.filename;
+            }
+
+            posters[0].addEventListener('mouseover', image_over);
+            posters[1].addEventListener('mouseover', image_over);
+            posters[2].addEventListener('mouseover', image_over);
+
+
+
+        </script>
+    </body>
+</html>
